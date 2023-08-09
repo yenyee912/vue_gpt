@@ -1,15 +1,17 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.svg" height="50px" width="50px" />
-    <HelloWorld msg="Hello Vue 2 + Vite" />
+    <PopUpChatRoom />
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue';
+import PopUpChatRoom from './components/PopUpChatRoom.vue';
+
+
 export default {
   components: {
-    HelloWorld,
+    PopUpChatRoom
+
   },
 };
 </script>
