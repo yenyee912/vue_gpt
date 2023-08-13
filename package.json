@@ -10,11 +10,12 @@
   "dependencies": {
     "axios": "^1.4.0",
     "bootstrap-vue": "^2.23.1",
-    "vite-plugin-vue2": "^2.0.3",
-    "vue": "^2.7.14"
+    "vue": "^2.7.14",
+    "vue-bot-ui": "^0.2.8",
+    "vue-bubble-chat": "^1.1.2"
   },
   "devDependencies": {
-    "@vitejs/plugin-vue": "^4.2.3",
+    "@vitejs/plugin-vue2": "^2.0.3",
     "vite": "^4.4.6"
   }
 }
