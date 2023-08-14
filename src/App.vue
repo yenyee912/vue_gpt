@@ -1,17 +1,26 @@
 <template>
   <div id="app">
-    <PopUpChatRoom />
+    <PopUpChatRoom :window-mode="windowMode" />
+    <FloatingChatButton @click="windowMode= !windowMode" />
+    {{ windowMode }}
   </div>
 </template>
 
 <script>
 import PopUpChatRoom from './components/PopUpChatRoom.vue';
-
+import FloatingChatButton from './components/FloatingChatButton.vue';
 
 export default {
   components: {
-    PopUpChatRoom
+    PopUpChatRoom,
+    FloatingChatButton
 
+  },
+
+  data(){
+    return{
+      windowMode: false,
+    };
   },
 };
 </script>

@@ -2,7 +2,7 @@
   <!-- :style="{ [chatPosition]: 0 }" -->
   <div>
 
-    <b-btn variant="success" class="btn-open-chat" @click="windowMode=!windowMode">Chat</b-btn>
+    <!-- <b-btn variant="success" class="btn-open-chat" @click="windowMode=!windowMode">Chat</b-btn> -->
 
     <div v-show="windowMode" class="chat-popup">
       <div>
@@ -44,11 +44,14 @@ import axios from 'axios';
 
 export default {
   props: {
-    msg: String,
+    windowMode: {
+      type: Boolean,
+      default: false,
+    }
+
   },
   data() {
     return {
-      windowMode: true,
       newMessageText: "What is the price of bitcoin?", // text which not yet send
       fullMesagesList: [
         { "isMine": true, 
@@ -147,11 +150,18 @@ export default {
   width: 280px;
 }
 
-.chat-popup{
+/* .chat-popup{
   width: 80%;
   max-width: 80%;
   align-self: auto;
   margin: auto;
+} */
+
+.chat-popup{
+  position: fixed;
+  bottom: 15px;
+  right: 15px;
+  z-index: 9;
 }
 
 
