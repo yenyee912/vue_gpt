@@ -1,8 +1,8 @@
 <template>
   <div id="app">
-    <PopUpChatRoom :window-mode="windowMode" />
-    <FloatingChatButton @click="windowMode= !windowMode" />
-    {{ windowMode }}
+    <PopUpChatRoom :windowMode="windowMode" />
+    <FloatingChatButton  @change-mode="(n)=> windowMode=n"  />
+      {{ windowMode }}
   </div>
 </template>
 
@@ -22,6 +22,12 @@ export default {
       windowMode: false,
     };
   },
+
+  methods:{
+    changeMode(e){
+      this.windowMode= e;
+    }
+  }
 };
 </script>
 

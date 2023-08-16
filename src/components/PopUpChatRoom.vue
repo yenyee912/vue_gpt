@@ -17,10 +17,10 @@
               </span> -->
               </b-col>
 
-              <b-col cols="10">
-                  <span class="txt-username">{{ msgObj.senderNameField }}</span>
+              <b-col cols="10" class="messages_list__item___message">
+              <span>{{ msgObj.senderNameField }}</span>
 
-              <span class="txt-message">{{ msgObj.textField }}</span>
+              <span>{{ msgObj.textField }}</span>
               
               </b-col>
 
@@ -55,7 +55,7 @@ export default {
       newMessageText: "What is the price of bitcoin?", // text which not yet send
       fullMesagesList: [
         { "isMine": true, 
-        "textField": "What is the price of bitcoin?\n", 
+        "textField": "the average price of BTCUSDT is 29410.59122796sasasassassasasasasass?\n", 
         "senderNameField": "me", 
         "avatarLinkField": "src/assets/logo.svg" }, 
         
@@ -162,18 +162,10 @@ export default {
   bottom: 15px;
   right: 15px;
   z-index: 9;
+  /* border: solid 2px; */
 }
 
-
-.chat-popup .avatar{
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  -o-object-fit: cover;
-  object-fit: cover;
-}
-
-
+/* tested, applicable to both user and bot */
 .chat-popup .chat-bubble{
   display: -webkit-box;
   display: -ms-flexbox;
@@ -200,20 +192,29 @@ export default {
   /* position: absolute; */
   /* bottom: 0; */
   overflow: hidden;
+  /* border: solid 2px ; */
 
+}
+.chat-popup .avatar{
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: solid 2px;
+  -o-object-fit: cover;
+  object-fit: cover;
 }
 
 .chat-popup .user-bubble{
-    background-color: #d6d6d6;
-
+  background-color: #f3f3f3;
+  color: black;
 }
 
 .chat-popup .bot-bubble{
-    background-color: #6f42c1;
-    color: white;
-
+  background-color: #6f42c1;
+  color: white;
 }
 
+/* tested, all same position when turn off message component */
 .chat-popup .txt-username{
   display: block;
   font-weight: bold;
@@ -227,9 +228,12 @@ export default {
   letter-spacing: 0.6px;
   text-transform: capitalize;
   /* position: relative; */
+  /* border: solid 2px; */
 }
 
+
 .chat-popup .txt-message{
+  display: block;
   font-size: 13px;
   letter-spacing: .3px;
   white-space: pre-line;
@@ -237,5 +241,34 @@ export default {
   text-align: left;
   overflow: hidden;
   text-overflow: ellipsis;
+  border: solid 2px;
+  /* position: relative; */
+
+}
+
+.chat-popup .messages_list__item___message {
+  padding-left: 5px;
+  -webkit-box-flex: 4;
+  -ms-flex: 4;
+  flex: 4;
+  font-size: 13px;
+  letter-spacing: 0.3px;
+  min-height: 100%;
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-align: start;
+  -ms-flex-align: start;
+  align-items: flex-start;
+  -webkit-box-pack: start;
+  -ms-flex-pack: start;
+  justify-content: flex-start;
+  position: relative;
+  z-index: 1;
 }
 </style>

@@ -3,7 +3,7 @@
     <div id="main-wrapper">
       <div id="floating-snap-btn-wrapper">
         <!-- BEGIN :: Floating Button -->
-        <div class="fab-btn">
+        <div class="fab-btn" @click="emitChangeMode">
           <b-icon icon="chat-dots"></b-icon>
         </div>
         <!-- END :: Floating Button -->
@@ -16,6 +16,20 @@
 
 <script>
 export default {
+  data(){
+    return{
+      windowMode: false
+    }
+  },
+
+  methods:{
+    emitChangeMode(){
+      this.windowMode= !this.windowMode;
+      this.$emit("change-mode", this.windowMode);
+    }
+
+  },
+  
 
 }
 </script>
