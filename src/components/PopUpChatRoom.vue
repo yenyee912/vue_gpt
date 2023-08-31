@@ -4,27 +4,20 @@
 
     <!-- <b-btn variant="success" class="btn-open-chat" @click="windowMode=!windowMode">Chat</b-btn> -->
 
-    <div v-show="windowMode" class="chat-popup">
+    <div v-show="windowMode" class="popup-chat">
       <div>
+        <div class="header-chat">
+          <img src="src/assets/logo.svg" class="image-avatar" /> 
+          <span class="text-username"> {{ botName }}</span>
+
+        </div>
+
           <!-- {{ fullMesagesList }} -->
           <div v-for="(msgObj, index) in fullMesagesList" :key="index">
-            <div class="mb-2 chat-bubble" :class="[msgObj.isMine? 'user-bubble': 'bot-bubble']">
-              <b-row>
-              <b-col cols="2"><img v-if="msgObj.avatarLinkField" :src="msgObj.avatarLinkField" class="avatar" />
-              <!-- use html to create a logo  -->
-              <!-- <span class="no-image" v-if="!msgObj.avatarLinkField">
-                {{ msgObj.senderNameField ? msgObj.senderNameField.charAt(0).toUpperCase() : '?' }}
-              </span> -->
-              </b-col>
-
-              <b-col cols="10" class="messages_list__item___message">
-              <span>{{ msgObj.senderNameField }}</span>
-
+            <div class="mb-2 bubble-chat" :class="[msgObj.isMine? 'bubble-user': 'bubble-bot']">
               <span>{{ msgObj.textField }}</span>
-              
-              </b-col>
-
-              </b-row>
+            
+              <!-- </b-row> -->
 
             </div>
           </div>
@@ -56,25 +49,23 @@ export default {
       fullMesagesList: [
         { "isMine": true, 
         "textField": "the average price of BTCUSDT is 29410.59122796sasasassassasasasasass?\n", 
-        "senderNameField": "me", 
-        "avatarLinkField": "src/assets/logo.svg" }, 
+        "senderNameField": "the average price of BTCUSDT is 29410.59122796sasasassassasasasasassthe average price of BTCUSDT is 29410.59122796sasasassassasasasasass", 
+       }, 
         
         { "isMine": false, 
         "textField": "the average price of BTCUSDT is 29410.59122796 ", 
         "senderNameField": "ai", 
-        "avatarLinkField": "src/assets/user.jpeg" },
-              {
+      },
+        {
           "isMine": true,
           "textField": "What is the price of bitcoin?\n",
           "senderNameField": "me",
-          "avatarLinkField": "src/assets/logo.svg"
         },
 
         {
           "isMine": false,
           "textField": "the average price of BTCUSDT is 29410.59122796 ",
           "senderNameField": "ai",
-          "avatarLinkField": "src/assets/user.jpeg"
         }],
 
 
@@ -84,6 +75,7 @@ export default {
       userAvatar: "src/assets/user.jpeg",
       botAvatar: "src/assets/logo.svg",
       userName: "John Doe",
+      botName: "AI",
 
     };
   },
@@ -142,31 +134,47 @@ export default {
 </script>
 
 <style scoped>
-.btn-open-chat{
-  cursor: pointer;
-  position: fixed;
-  bottom: 23px;
-  right: 28px;
-  width: 280px;
-}
-
-/* .chat-popup{
+/* .popup-chat{
   width: 80%;
   max-width: 80%;
   align-self: auto;
   margin: auto;
 } */
 
-.chat-popup{
+.popup-chat{
   position: fixed;
   bottom: 15px;
   right: 15px;
   z-index: 9;
+  width: 50%;
+  max-width: 50%; /* flexibility: the chat window will change depends on message length */
+  /* border: solid 2px; */
+}
+
+.popup-chat .header-chat{
+  text-align: left;
+}
+
+/* tested, all username align at same position when turn off message component */
+.text-username{
+  /* display: flex; */
+  font-weight: bold;
+  font-size: 30px;
+  width: 100%;
+  text-align: left;
+  margin: auto;
+  /* margin-right: 20px;
+  padding-right: 30px;
+  margin-bottom: 2px;
+  padding-bottom: 5px; */
+  letter-spacing: 0.6px;
+  text-transform: capitalize;
+  /* position: relative; */
   /* border: solid 2px; */
 }
 
 /* tested, applicable to both user and bot */
-.chat-popup .chat-bubble{
+.popup-chat .bubble-chat{
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -195,44 +203,31 @@ export default {
   /* border: solid 2px ; */
 
 }
-.chat-popup .avatar{
+.popup-chat .image-avatar{
   width: 50px;
   height: 50px;
   border-radius: 50%;
   border: solid 2px;
   -o-object-fit: cover;
   object-fit: cover;
+
+  text-align: left;
+  margin: left;
+
 }
 
-.chat-popup .user-bubble{
+.popup-chat .bubble-user{
   background-color: #f3f3f3;
   color: black;
 }
 
-.chat-popup .bot-bubble{
+.popup-chat .bubble-bot{
   background-color: #6f42c1;
   color: white;
 }
 
-/* tested, all same position when turn off message component */
-.chat-popup .txt-username{
-  display: block;
-  font-weight: bold;
-  font-size: 12px;
-  width: 100%;
-  text-align: left;
-  margin-right: 20px;
-  padding-right: 10px;
-  margin-bottom: 2px;
-  padding-bottom: 5px;
-  letter-spacing: 0.6px;
-  text-transform: capitalize;
-  /* position: relative; */
-  /* border: solid 2px; */
-}
 
-
-.chat-popup .txt-message{
+.popup-chat .text-message{
   display: block;
   font-size: 13px;
   letter-spacing: .3px;
@@ -246,7 +241,7 @@ export default {
 
 }
 
-.chat-popup .messages_list__item___message {
+.popup-chat .messages_list__item___message {
   padding-left: 5px;
   -webkit-box-flex: 4;
   -ms-flex: 4;
