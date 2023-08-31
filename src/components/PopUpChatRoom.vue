@@ -23,8 +23,10 @@
           </div>
         </div>
       <div class="mt-4">
-        <b-textarea v-model="newMessageText" placeholder="Use 'Shift + Enter' to send"
-          v-on:keyup.enter.shift="sendMessage"></b-textarea>
+        <!-- v-on:keyup.enter.shift="sendMessage" -->
+        <b-textarea v-model="newMessageText" placeholder="Ask some questions..."></b-textarea>
+        <b-btn size="sm" variant="success"  @click="sendMessage">Send</b-btn>
+
       </div>
     </div> <!--end of window mode-->
 
@@ -45,32 +47,9 @@ export default {
   },
   data() {
     return {
-      newMessageText: "What is the price of bitcoin?", // text which not yet send
-      fullMesagesList: [
-        { "isMine": true, 
-        "textField": "the average price of BTCUSDT is 29410.59122796sasasassassasasasasass?\n", 
-        "senderNameField": "the average price of BTCUSDT is 29410.59122796sasasassassasasasasassthe average price of BTCUSDT is 29410.59122796sasasassassasasasasass", 
-       }, 
-        
-        { "isMine": false, 
-        "textField": "the average price of BTCUSDT is 29410.59122796 ", 
-        "senderNameField": "ai", 
-      },
-        {
-          "isMine": true,
-          "textField": "What is the price of bitcoin?\n",
-          "senderNameField": "me",
-        },
-
-        {
-          "isMine": false,
-          "textField": "the average price of BTCUSDT is 29410.59122796 ",
-          "senderNameField": "ai",
-        }],
-
-
+      newMessageText: "", // text which not yet send
+      fullMesagesList: [],
       chatPosition: 'right',
-      messages: [],
 
       userAvatar: "src/assets/user.jpeg",
       botAvatar: "src/assets/logo.svg",
@@ -98,7 +77,7 @@ export default {
       this.fullMesagesList.push(msg);
       this.newMessageText = "";
 
-      // this.formatResponse(msg.textField);
+      this.formatResponse(msg.textField);
     },
 
     async formatResponse(prompt){
@@ -109,7 +88,7 @@ export default {
         avatarLinkField: this.botAvatar
       });
 
-      const x = await axios.post("http://localhost:5050/ask", { prompt: prompt });
+      const x = await axios.post( `${process.env.VUE_APP_GPT_API}/ask`, { prompt: prompt });
 
       
       if (x.data.success)
@@ -149,6 +128,7 @@ export default {
   width: 50%;
   max-width: 50%; /* flexibility: the chat window will change depends on message length */
   /* border: solid 2px; */
+
 }
 
 .popup-chat .header-chat{
